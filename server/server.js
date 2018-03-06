@@ -1,24 +1,33 @@
 // root of node application
+// node npm
 const path = require('path'); // just part of node
+const http = require('http');
+
 const publicPath = path.join(__dirname, '../public');
 const port = process.env.PORT || 3000;
 
 // 3rd party npm
 const express = require('express');
-
+const socketIO = require('socket.io');
 
 
 // launch express app
 var app = express();
+var server = http.createServer(app);
+var io = socketIO(server); // gives us our websocket server
 
 // user publicPath for static
 app.use(express.static(publicPath));
 
-app.get('/', (req,res) => res.send());
+io.on('connection', (socket) => {
+    console.log('New user connected');
+    
+    socket.on('disconnect',()=>{
+        console.log('User disconnected');
+    });
+}); //listen for a new connection then do callback
 
-
-
-app.listen(port, () => console.log(`Server is up and listening on ${port}`));
+server.listen(port, () => console.log(`Server is up and listening on ${port}`));
 
 //console.log(__dirname + '/../public');
 //console.log(publicPath);
