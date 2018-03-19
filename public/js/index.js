@@ -5,15 +5,15 @@ socket.on('connect', function() {
     console.log('Connected to server');
     console.log('---');
     
-    socket.emit('createEmail',{
-        to: 'jen@example.com',
-        text: 'Hey, this is andrew'
-    });
-    
-    socket.emit('createMessage',{
-        from: 'Tommy',
-        text: 'stop messaging me'
-    });
+//    socket.emit('createEmail',{
+//        to: 'jen@example.com',
+//        text: 'Hey, this is andrew'
+//    });
+//    
+//    socket.emit('createMessage',{
+//        from: 'Tommy',
+//        text: 'stop messaging me'
+//    });
 });
             
 socket.on('disconnect', function () {
